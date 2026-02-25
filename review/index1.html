@@ -25,7 +25,7 @@
             --white: #ffffff;
             --text-main: #1A1A1A;
             --text-light: #555555;
-            --glass-bg: rgba(27, 67, 50, 0.90); /* Darker glass for header */
+            --glass-bg: rgba(27, 67, 50, 0.90);
             --card-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
 
@@ -44,7 +44,7 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--deep-forest); font-weight: 600; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- Header (FROM YOUR INPUT) --- */
+        /* --- Header --- */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 25px 0;
@@ -106,7 +106,7 @@
         }
 
         .form-group { margin-bottom: 20px; transition: transform 0.3s ease; }
-        .form-group:hover { transform: translateX(5px); } 
+        .form-group:hover { transform: translateX(5px); } /* Subtle slide effect on hover */
 
         label { 
             display: block; 
@@ -132,7 +132,7 @@
             outline: none; 
             border-color: var(--gold-accent); 
             background-color: #fff;
-            transform: scale(1.01); 
+            transform: scale(1.01); /* Slight pop on focus */
             box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
         }
 
@@ -157,7 +157,10 @@
         .star-rating label:hover { transform: scale(1.2); }
 
         .star-rating input:checked ~ label,
-        .style="background-color: var(--gold-accent);
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: var(--gold-accent);
+        }
 
         /* --- Submit Button --- */
         .submit-btn {
@@ -175,7 +178,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 10px 20px rgba(27, 67, 50, 0.15);
             position: relative;
-            overflow: hidden; 
+            overflow: hidden; /* For ripple effect if added later */
         }
 
         .submit-btn:hover {
@@ -194,7 +197,8 @@
         /* Loading Spinner */
         .spinner {
             display: none;
-            width: 20px; height: 20px;
+            width: 20px;
+            height: 20px;
             border: 3px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: #fff;
@@ -230,7 +234,7 @@
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             border-left: 4px solid var(--gold-accent);
-            opacity: 0; 
+            opacity: 0; /* Hidden initially for JS animation */
             transform: translateY(20px);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -306,16 +310,17 @@
             transform: translateX(-30px);
             transition: all 0.8s ease-out;
         }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
         .reveal-zoom {
             opacity: 0;
             transform: scale(0.9);
             transition: all 0.8s ease-out;
         }
-        .reveal-down {
-            opacity: 0;
-            transform: translateY(-30px);
-            transition: all 0.8s ease-out;
-        }
+
         .active {
             opacity: 1;
             transform: translate(0, 0) scale(1);
@@ -337,15 +342,13 @@
 </head>
 <body>
 
-    <!-- Header (UPDATED WITH YOUR CSS) -->
+    <!-- Header -->
     <header id="main-header" class="reveal-down">
         <div class="header-content">
-            <!-- UPDATED LINK: /index.html -->
-            <a href="/index.html" class="logo">
+            <a href="../index.html" class="logo">
                 <i class="fas fa-paw"></i> Onel Safari & Resort
             </a>
-            <!-- UPDATED LINK: /index.html -->
-            <a href="/index.html" class="back-btn">
+            <a href="../index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
             </a>
         </div>
@@ -391,7 +394,7 @@
                     <textarea id="review" name="review" rows="5" required placeholder="Tell us about your experience..."></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn reveal-left" id="submitBtn" style="transition-delay: 400px;">
+                <button type="submit" class="submit-btn reveal-left" id="submitBtn" style="transition-delay: 400ms;">
                     <span class="btn-text">Submit Review</span>
                     <div class="spinner"></div>
                 </button>
@@ -462,7 +465,7 @@
         });
 
         // --- 3. SCROLL ANIMATIONS (OBSERVER) ---
-        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-zoom, .reveal-down');
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-zoom');
 
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
