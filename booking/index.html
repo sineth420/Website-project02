@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- SEO Meta -->
+    <meta name="description" content="Book your Udawalawe Safari with Onel Safari & Resort. Best jeep safari packages, experienced guides, and unforgettable wildlife experience in Sri Lanka.">
+    <meta name="keywords" content="Udawalawe safari booking, Onel Safari, Sri Lanka safari jeep, Udawalawe national park safari booking">
+    <meta name="author" content="Onel Safari & Resort">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Book Your Safari - Onel Safari & Resort">
+    <meta property="og:description" content="Reserve your Udawalawa safari jeep now with Onel Safari & Resort.">
+    <meta property="og:image" content="https://picsum.photos/seed/onelsafari/1200/630">
+    <meta property="og:url" content="https://onelsafari.com/booking/">
+    <meta property="og:type" content="website">
+
+    <link rel="canonical" href="https://onelsafari.com/booking/">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Safari - Onel Safari & Resort</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables (Matching Home Page) --- */
+        :root {
+            --deep-forest: #1B4332;
+            --emerald: #2D6A4F;
+            --gold-accent: #D4AF37;
+            --bright-green: #28A745;
+            --cream-bg: #F0F7F4;
+            --white: #ffffff;
+            --text-main: #1A1A1A;
+            --text-light: #555555;
+            --glass-bg: rgba(27, 67, 50, 0.90); /* Darker glass */
+            --card-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            --success-color: #27ae60;
+            --error-color: #c0392b;
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--cream-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 140px; /* Space for fixed header */
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--deep-forest); font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        img { max-width: 100%; display: block; }
+
+        /* --- Header (UPDATED: GRAND LOOK) --- */
+        header { 
+            position: fixed; /* Fixed to match home page */
+            top: 0; 
+            width: 100%;
+            background-color: var(--glass-bg); 
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 25px 5%; /* Increased padding */
+            z-index: 1000; 
+            transition: all 0.3s ease;
+        }
+
+        .header-content { 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            width: 100%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 2rem; /* BIGGER LOGO TEXT */
+            font-weight: 700; 
+            color: var(--white); 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            text-decoration: none; 
+            line-height: 1.1;
+        }
+        
+        .logo i { font-size: 2.5rem; color: var(--gold-accent); }
+
+        .back-btn { 
+            color: var(--white); 
+            font-size: 0.95rem;
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 12px 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            border-radius: 50px; 
+            transition: all 0.3s; 
+            background: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover { 
+            background-color: var(--gold-accent); 
+            border-color: var(--gold-accent); 
+            color: var(--deep-forest); 
+            transform: translateY(-2px);
+        }
+
+        /* --- Layout Utilities --- */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+        .section-padding { padding: 100px 0; }
+
+        /* --- Buttons (Matching Home Page) --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 35px; /* Bigger Button */
+            background-color: var(--deep-forest);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(27, 67, 50, 0.15);
+            width: 100%; 
+            text-align: center;
+            border: none;
+        }
+        .btn:hover {
+            background-color: var(--gold-accent);
+            transform: translateY(-2px);
+            color: var(--deep-forest);
+        }
+
+        /* --- Animations --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 1s ease-out; }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 1s ease-out; }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .reveal-zoom { opacity: 0; transform: scale(0.9); transition: all 1s ease-out; }
+        .reveal-zoom.active { opacity: 1; transform: scale(1); }
+
+        /* --- Packages Section (UPDATED: BIGGER CARDS) --- */
+        #packages { padding: 60px 0 80px; }
+        
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 2.8rem; margin-bottom: 15px; position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; width: 60px; height: 3px; background-color: var(--gold-accent); bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 2px; }
+        .section-title p { color: #666; font-size: 1.1rem; max-width: 600px; margin: 20px auto 0; }
+
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
+        
+        .package-card { 
+            background: #fff; 
+            border-radius: 20px; /* More rounded */
+            overflow: hidden; 
+            box-shadow: var(--card-shadow); 
+            transition: transform 0.4s, box-shadow 0.4s; 
+            border: 1px solid rgba(0,0,0,0.05); 
+            display: flex; 
+            flex-direction: column; 
+            position: relative;
+        }
+        
+        .package-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 25px 60px rgba(27, 67, 50, 0.15); 
+            border-color: var(--gold-accent);
+        }
+
+        .card-img { height: 350px; overflow: hidden; background-color: #ddd; position: relative; } /* TALLER IMAGE */
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .package-card:hover .card-img img { transform: scale(1.05); }
+
+        .pkg-badge {
+            position: absolute; top: 25px; right: 25px;
+            background: var(--gold-accent);
+            color: var(--deep-forest);
+            padding: 10px 25px; border-radius: 30px;
+            font-size: 0.8rem; font-weight: 700; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card-content { padding: 40px; flex-grow: 1; display: flex; flex-direction: column; } /* MORE PADDING */
+        
+        .price-wrapper { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; }
+        .old-price { text-decoration: line-through; color: #999; font-size: 1.2rem; font-weight: 400; }
+        .current-price { color: var(--emerald); font-size: 2.2rem; font-weight: 700; font-family: 'Playfair Display', serif; }
+        .normal-price { font-size: 2.2rem; font-weight: 700; color: var(--emerald); font-family: 'Playfair Display', serif; }
+
+        .card-title { font-size: 2rem; margin-bottom: 20px; color: var(--deep-forest); line-height: 1.2; } /* BIGGER TITLE */
+        .card-desc { color: var(--text-light); margin-bottom: 35px; font-size: 1rem; flex-grow: 1; line-height: 1.7; }
+        .card-desc ul { list-style-type: none; }
+        .card-desc ul li { margin-bottom: 12px; padding-left: 30px; position: relative; }
+        .card-desc ul li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--gold-accent); position: absolute; left: 0; top: 4px; }
+
+        /* --- Booking Form Section (UPDATED) --- */
+        #booking { 
+            padding: 100px 0; 
+            background-color: var(--white); 
+            position: relative; 
+            overflow: hidden;
+        }
+
+        #booking::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--cream-bg) 0%, #e8f5e9 100%);
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .booking-wrapper { 
+            background: #fff; 
+            width: 100%; 
+            max-width: 750px; /* Slightly wider */
+            margin: 0 auto; 
+            padding: 60px; /* More padding */
+            border-radius: 20px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08); 
+            border: 1px solid #eee; 
+            position: relative; 
+            z-index: 1;
+        }
+
+        .form-header { text-align: center; margin-bottom: 50px; }
+        .form-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: var(--deep-forest); }
+        .form-header p { color: var(--text-light); font-size: 1.1rem; }
+
+        .form-group { margin-bottom: 25px; position: relative; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        
+        label { display: block; margin-bottom: 10px; font-weight: 600; color: var(--deep-forest); font-size: 0.95rem; }
+        
+        input, select, textarea { 
+            width: 100%; 
+            padding: 18px; /* Taller inputs */
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; /* More rounded */
+            font-family: inherit; 
+            font-size: 1.05rem; 
+            transition: all 0.3s; 
+            background-color: #fff; 
+        }
+        
+        input:focus, select:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--gold-accent); 
+            background-color: #fff; 
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
+        }
+
+        .selected-package-badge { 
+            background-color: rgba(27, 67, 50, 0.05); 
+            color: var(--deep-forest); 
+            padding: 18px; 
+            border-radius: 10px; 
+            margin-bottom: 30px; 
+            text-align: center; 
+            font-weight: 600; 
+            font-size: 1.1rem;
+            border: 1px solid var(--gold-accent); 
+            display: none; 
+            animation: fadeIn 0.5s; 
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .submit-btn { 
+            background-color: var(--deep-forest); 
+            border-radius: 50px;
+            padding: 18px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .submit-btn:hover { background-color: var(--emerald); color: white; }
+        .submit-btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .spinner { width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-inout infinite; display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* --- Toast --- */
+        #notification-container { position: fixed; bottom: 30px; right: 30px; z-index: 2000; display: flex; flex-direction: column; gap: 15px; }
+        .toast { background: #fff; padding: 25px 30px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 15px; min-width: 350px; transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); border-left: 5px solid; }
+        .toast.show { transform: translateX(0); }
+        .toast.success { border-left-color: var(--emerald); }
+        .toast.success i { color: var(--emerald); font-size: 1.2rem; }
+        .toast.error { border-left-color: var(--error-color); }
+        .toast.error i { color: var(--error-color); font-size: 1.2rem; }
+
+        /* Footer */
+        footer {
+            background-color: var(--deep-forest); color: rgba(255,255,255,0.8);
+            padding: 50px 0; text-align: center; font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) { 
+            /* Mobile Header Reset */
+            header { padding: 15px 0; position: sticky; top:0; } /* Sticky on mobile for space */
+            body { padding-top: 0; }
+            .logo { font-size: 1.5rem; }
+            .back-btn span { display: none; } 
+
+            .form-row { grid-template-columns: 1fr; gap: 0; } 
+            .booking-wrapper { padding: 40px 25px; } 
+            #notification-container { right: 20px; left: 20px; bottom: 20px; } 
+            .toast { min-width: auto; width: 100%; } 
+            .section-title h2 { font-size: 2.2rem; }
+            
+            .packages-grid { grid-template-columns: 1fr; }
+            .card-img { height: 250px; }
+            .card-content { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-paw"></i> Onel Safari & Resort
+            </a>
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+            </a>
+        </div>
+    </header>
+
+    <section id="packages">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Choose Your Safari</h2>
+                <p>Select an adventure package below to begin your journey into the wild.</p>
+            </div>
+            <div class="packages-grid">
+                <!-- Package 1: 4 Hours -->
+                <div class="package-card reveal-left">
+                    <div class="card-img">
+                        <span class="pkg-badge">Popular</span>
+                        <!-- UPDATED PATH: Uses standard home page image name -->
+                        <img src="../images/pkg-1.webp" alt="4 Hours Package">
+                    </div>
+                    <div class="card-content">
+                        <div class="price-wrapper"><span class="normal-price">$ 65</span></div>
+                        <h3 class="card-title">4 Hours Package</h3>
+                        <div class="card-desc">
+                            <ul>
+                                <li>Morning OR Evening Safari Ride</li>
+                                <li>Experienced Chauffer Guide</li>
+                                <li>Jeep Entry Fees Included</li>
+                            </ul>
+                        </div>
+                        <button class="btn book-now-btn" data-package="4 Hours Package">Book This Package <i class="fas fa-chevron-right" style="font-size:0.8rem; margin-left:5px;"></i></button>
+                    </div>
+                </div>
+
+                <!-- Package 2: 6 Hours -->
+                <div class="package-card reveal-zoom">
+                    <div class="card-img">
+                        <!-- UPDATED PATH: Uses standard home page image name -->
+                        <img src="../images/pkg-2.webp" alt="6 Hours Package">
+                    </div>
+                    <div class="card-content">
+                        <div class="price-wrapper">
+                            <span class="old-price">$80</span>
+                            <span class="current-price">$75</span>
+                        </div>
+                        <h3 class="card-title">6 Hours Package</h3>
+                        <div class="card-desc">
+                            <ul>
+                                <li>Food and Beverage Included</li>
+                                <li>Jeep Fees Included</li>
+                                <li>Higher chance of spotting Leopards</li>
+                            </ul>
+                        </div>
+                        <button class="btn book-now-btn" data-package="6 Hours Package">Book This Package <i class="fas fa-chevron-right" style="font-size:0.8rem; margin-left:5px;"></i></button>
+                    </div>
+                </div>
+
+                <!-- Package 3: Full Day -->
+                <div class="package-card reveal-right">
+                    <div class="card-img">
+                        <span class="pkg-badge">Best Value</span>
+                        <!-- UPDATED PATH: Uses standard home page image name -->
+                        <img src="../images/pkg-3.webp" alt="Full Day Package">
+                    </div>
+                    <div class="card-content">
+                        <div class="price-wrapper">
+                            <span class="old-price">$105</span>
+                            <span class="current-price">$100</span>
+                        </div>
+                        <h3 class="card-title">Full Day (11 Hours)</h3>
+                        <div class="card-desc">
+                            <ul>
+                                <li>Breakfast & Lunch Included</li>
+                                <li>Full Park Coverage</li>
+                                <li>Refreshments Included</li>
+                            </ul>
+                        </div>
+                        <button class="btn book-now-btn" data-package="Full Day (11 Hours) Package">Book This Package <i class="fas fa-chevron-right" style="font-size:0.8rem; margin-left:5px;"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+        <div class="container">
+            <div class="booking-wrapper reveal-zoom">
+                <div class="form-header">
+                    <h2>Reservation Form</h2>
+                    <p>Secure your spot. We will confirm availability shortly.</p>
+                </div>
+                <div id="packageBadge" class="selected-package-badge"><i class="fas fa-check-circle" style="color: var(--emerald); margin-right: 8px;"></i> Selected: <span id="packageNameDisplay"></span></div>
+
+                <!-- Formspree Action remains same -->
+                <form id="bookingForm" action="https://formspree.io/f/mnjbjagz" method="POST">
+                    <div class="form-row">
+                        <div class="form-group"><label>Full Name</label><input type="text" name="name" required placeholder="John Doe"></div>
+                        <div class="form-group"><label>Email Address</label><input type="email" name="email" required placeholder="john@example.com"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="+94 7X XXX XXXX"></div>
+                        <div class="form-group"><label>Persons</label><input type="number" name="persons" min="1" required placeholder="2"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Date From</label><input type="date" id="date-from" name="date-from" required></div>
+                        <div class="form-group"><label>Date To</label><input type="date" id="date-to" name="date-to" required></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Package</label>
+                        <select name="package" id="package-select" required>
+                            <option value="" disabled selected>Choose a package...</option>
+                            <option value="4 Hours Package">4 Hours Package ($65)</option>
+                            <option value="6 Hours Package">6 Hours Package ($75)</option>
+                            <option value="Full Day (11 Hours) Package">Full Day Package ($100)</option>
+                            <option value="Custom Inquiry">Custom Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Message</label><textarea name="message" rows="4" placeholder="Additional requests..."></textarea></div>
+                    <!-- Updated Subject Line -->
+                    <input type="hidden" name="_subject" value="New Onel Safari Booking">
+                    <button type="submit" class="btn submit-btn" id="submitBtn"><span class="btn-text">Confirm Booking</span><div class="spinner"></div></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Onel Safari & Resort. All Rights Reserved.
+    </footer>
+    <div id="notification-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- FOLDER TRICK (Clean URL) ---
+            const applyCleanUrl = () => {
+                try {
+                    if (window.location.pathname.endsWith('index.html')) {
+                         const newPath = window.location.pathname.replace('index.html', '');
+                         window.history.replaceState(null, null, newPath);
+                    }
+                } catch (error) {
+                    console.warn("URL manipulation blocked:", error);
+                }
+            };
+
+            applyCleanUrl();
+
+            window.addEventListener('popstate', (event) => {
+                applyCleanUrl();
+            });
+
+            // --- 1. Smooth Scroll Logic ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault(); 
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // --- 2. Date Logic ---
+            const dateFrom = document.getElementById('date-from');
+            const dateTo = document.getElementById('date-to');
+            
+            const getTodayDate = () => {
+                const today = new Date();
+                return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            };
+            dateFrom.setAttribute('min', getTodayDate());
+            dateTo.setAttribute('min', getTodayDate());
+
+            dateFrom.addEventListener('change', (e) => {
+                dateTo.setAttribute('min', e.target.value);
+                if (dateTo.value && dateTo.value < e.target.value) dateTo.value = '';
+            });
+
+            // --- 3. Auto-Select Package Logic ---
+            const packageSelect = document.getElementById('package-select');
+            const badge = document.getElementById('packageBadge');
+            const badgeName = document.getElementById('packageNameDisplay');
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // FIXED: Check for 'package' (matching the home page link) AND 'p' (legacy)
+            let selectedPackage = urlParams.get('package');
+            if (!selectedPackage) {
+                selectedPackage = urlParams.get('p');
+            }
+
+            if (selectedPackage) {
+                // Try to find a matching option value
+                // Simple check: if the URL value is contained in an option value
+                const options = Array.from(packageSelect.options);
+                const matchingOption = options.find(opt => opt.value.includes(selectedPackage));
+                
+                if (matchingOption) {
+                    packageSelect.value = matchingOption.value;
+                    badge.style.display = 'block'; 
+                    badgeName.innerText = matchingOption.value;
+                }
+            }
+
+            document.querySelectorAll('.book-now-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const p = btn.getAttribute('data-package');
+                    packageSelect.value = p;
+                    badge.style.display = 'block'; badgeName.innerText = p;
+                    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // --- 4. Scroll Animations ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom').forEach(el => observer.observe(el));
+
+            // --- 5. FORM SUBMISSION ---
+            const form = document.getElementById('bookingForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.spinner');
+
+            function showToast(type, title, message) {
+                const container = document.getElementById('notification-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i><div class="toast-content"><div class="toast-title">${title}</div><div class="toast-msg">${message}</div></div>`;
+                container.appendChild(toast);
+                requestAnimationFrame(() => toast.classList.add('show'));
+                setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 5000);
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                btnText.style.display = 'none';
+                spinner.style.display = 'block';
+                submitBtn.disabled = true;
+
+                const data = new FormData(form);
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showToast('success', 'Success', 'Booking sent! We will contact you soon.');
+                        form.reset();
+                        badge.style.display = 'none';
+                    } else {
+                        response.json().then(err => {
+                            showToast('error', 'Submission Error', err.errors ? err.errors[0].message : 'Something went wrong.');
+                        }).catch(() => {
+                            showToast('error', 'Error', 'Server returned an error (Status: ' + response.status + ')');
+                        });
+                    }
+                })
+                .catch(error => {
+                    showToast('error', 'Connection Error', 'Please check your internet connection.');
+                })
+                .finally(() => {
+                    btnText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                    submitBtn.disabled = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

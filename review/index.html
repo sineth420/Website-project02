@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Guest Reviews - Onel Safari & Resort</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables --- */
+        :root {
+            --deep-forest: #1B4332;
+            --emerald: #2D6A4F;
+            --gold-accent: #D4AF37;
+            --bright-green: #28A745;
+            --cream-bg: #F0F7F4;
+            --white: #ffffff;
+            --text-main: #1A1A1A;
+            --text-light: #555555;
+            --glass-bg: rgba(27, 67, 50, 0.90);
+            --card-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        /* --- Reset & Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            color: var(--text-main); 
+            background-color: var(--cream-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 140px; 
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--deep-forest); font-weight: 600; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- Header --- */
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 25px 0;
+            background-color: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .header-content { 
+            max-width: 1300px; margin: 0 auto; padding: 0 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+
+        .logo { 
+            font-family: 'Playfair Display', serif; font-size: 2rem; 
+            font-weight: 700; color: var(--white); display: flex; 
+            align-items: center; gap: 15px; text-decoration: none; line-height: 1.1;
+        }
+        .logo i { font-size: 2.5rem; color: var(--gold-accent); }
+
+        .back-btn { 
+            color: var(--white); font-size: 0.95rem; font-weight: 600; 
+            display: flex; align-items: center; gap: 10px; 
+            padding: 12px 30px; border: 1px solid rgba(255, 255, 255, 0.4); 
+            border-radius: 50px; transition: all 0.3s; background: transparent;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .back-btn:hover { 
+            background-color: var(--gold-accent); border-color: var(--gold-accent); 
+            color: var(--deep-forest); transform: translateY(-2px); 
+        }
+
+        /* --- Layout Utilities --- */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Page Header --- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* --- Review Form Card --- */
+        .review-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 50px;
+            margin-bottom: 60px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .form-group { margin-bottom: 20px; transition: transform 0.3s ease; }
+        .form-group:hover { transform: translateX(5px); } /* Subtle slide effect on hover */
+
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: var(--deep-forest); 
+            font-size: 0.95rem; 
+        }
+
+        input[type="text"], select, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; 
+            font-family: inherit; 
+            font-size: 1rem; 
+            transition: all 0.3s; 
+            background-color: #fff; 
+            color: var(--text-main);
+        }
+
+        input[type="text"]:focus, select:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--gold-accent); 
+            background-color: #fff;
+            transform: scale(1.01); /* Slight pop on focus */
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
+        }
+
+        /* --- Star Rating System --- */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse; 
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .star-rating input { display: none; }
+
+        .star-rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin: 0;
+        }
+
+        .star-rating label:hover { transform: scale(1.2); }
+
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: var(--gold-accent);
+        }
+
+        /* --- Submit Button --- */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--deep-forest);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(27, 67, 50, 0.15);
+            position: relative;
+            overflow: hidden; /* For ripple effect if added later */
+        }
+
+        .submit-btn:hover {
+            background-color: var(--gold-accent);
+            color: var(--deep-forest);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Reviews List Section --- */
+        .reviews-list-container {
+            margin-top: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--deep-forest);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: ''; position: absolute; width: 50px; height: 3px;
+            background-color: var(--gold-accent); bottom: -10px; left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .review-item {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--gold-accent);
+            opacity: 0; /* Hidden initially for JS animation */
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .review-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .reviewer-info h4 {
+            font-size: 1.1rem;
+            color: var(--deep-forest);
+            margin-bottom: 4px;
+        }
+        
+        .reviewer-info span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .review-date {
+            font-size: 0.85rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        .display-stars {
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .loading-msg, .error-msg {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .error-msg { color: #c0392b; font-weight: 600; }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--deep-forest); color: rgba(255,255,255,0.8);
+            padding: 40px 0; text-align: center; font-size: 0.9rem; margin-top: 60px;
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-zoom {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease-out;
+        }
+
+        .active {
+            opacity: 1;
+            transform: translate(0, 0) scale(1);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 0; position: sticky; top: 0; }
+            body { padding-top: 0; }
+            .logo { font-size: 1.5rem; }
+            .logo i { font-size: 1.8rem; }
+            .back-btn span { display: none; } 
+            
+            .page-header h1 { font-size: 2rem; }
+            .review-card { padding: 30px 20px; }
+            .review-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="main-header" class="reveal-down">
+        <div class="header-content">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-paw"></i> Onel Safari & Resort
+            </a>
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header reveal-up">
+                <h1>Guest Reviews</h1>
+                <p>Share your adventure with the world.</p>
+            </div>
+
+            <!-- Review Form -->
+            <form class="review-card reveal-zoom" id="reviewForm">
+                <div class="form-group reveal-left">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="E.g., John Doe">
+                </div>
+
+                <!-- Country Dropdown -->
+                <div class="form-group reveal-left" style="transition-delay: 100ms;">
+                    <label for="country">Your Country</label>
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>Select your country...</option>
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+
+                <div class="form-group reveal-left" style="transition-delay: 200ms;">
+                    <label>Your Rating</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+
+                <div class="form-group reveal-left" style="transition-delay: 300ms;">
+                    <label for="review">Your Review</label>
+                    <textarea id="review" name="review" rows="5" required placeholder="Tell us about your experience..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn reveal-left" id="submitBtn" style="transition-delay: 400ms;">
+                    <span class="btn-text">Submit Review</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+
+            <!-- Display Reviews Section -->
+            <div class="reviews-list-container reveal-up">
+                <h2 class="section-title">Recent Feedback</h2>
+                <div id="loading" class="loading-msg">Loading reviews...</div>
+                <div id="reviewsList"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Onel Safari & Resort. All Rights Reserved.
+    </footer>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        // Ensure this points to /comments.json
+        const DATABASE_URL = "https://comment-onel-safari-default-rtdb.asia-southeast1.firebasedatabase.app/comments.json";
+
+        // --- 2. COUNTRY LIST ---
+        const countries = [
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
+            "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina",
+            "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+            "Cambodia", "Cameroon", "Canada", "Cape Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo",
+            "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic",
+            "Denmark", "Djibouti", "Dominican Republic",
+            "Ecuador", "Egypt", "El Salvador", "Eritrea", "Estonia", "Ethiopia",
+            "Fiji", "Finland", "France",
+            "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Greenland", "Guatemala", "Guinea",
+            "Haiti", "Honduras", "Hungary",
+            "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
+            "Jamaica", "Japan", "Jordan",
+            "Kazakhstan", "Kenya", "Kuwait", "Kyrgyzstan",
+            "Laos", "Latvia", "Lebanon", "Lesotho", "Libya", "Lithuania", "Luxembourg",
+            "Madagascar", "Malaysia", "Maldives", "Mali", "Malta", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Myanmar",
+            "Namibia", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Nigeria", "North Korea", "Norway",
+            "Oman",
+            "Pakistan", "Panama", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
+            "Qatar",
+            "Romania", "Russia", "Rwanda",
+            "Saudi Arabia", "Senegal", "Serbia", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sudan", "Sweden", "Switzerland", "Syria",
+            "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Tunisia", "Turkey", "Turkmenistan",
+            "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan",
+            "Vatican City", "Venezuela", "Vietnam",
+            "Yemen",
+            "Zambia", "Zimbabwe"
+        ];
+
+        // Populate Country Dropdown
+        const countrySelect = document.getElementById('country');
+        const lankaOption = document.createElement('option');
+        lankaOption.value = "Sri Lanka";
+        lankaOption.textContent = "Sri Lanka";
+        countrySelect.appendChild(lankaOption);
+
+        countries.sort().forEach(country => {
+            if(country !== "Sri Lanka") {
+                const option = document.createElement('option');
+                option.value = country;
+                option.textContent = country;
+                countrySelect.appendChild(option);
+            }
+        });
+
+        // --- 3. SCROLL ANIMATIONS (OBSERVER) ---
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-zoom');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
+
+
+        // --- 4. FETCH REVIEWS (READ) ---
+        async function fetchReviews() {
+            const listContainer = document.getElementById('reviewsList');
+            const loading = document.getElementById('loading');
+
+            try {
+                const response = await fetch(DATABASE_URL);
+                if (!response.ok) throw new Error("Network response was not ok");
+                
+                const data = await response.json();
+                loading.style.display = 'none';
+                listContainer.innerHTML = ''; 
+
+                if (data) {
+                    // Convert object to array and reverse
+                    const reviewsArray = Object.entries(data).reverse();
+
+                    reviewsArray.forEach(([key, review], index) => {
+                        const date = new Date(review.timestamp).toLocaleDateString("en-US", {
+                            year: 'numeric', month: 'long', day: 'numeric'
+                        });
+
+                        let starsHtml = '';
+                        for(let i=1; i<=5; i++) {
+                            if(i <= review.rating) starsHtml += '<i class="fas fa-star"></i>';
+                            else starsHtml += '<i class="far fa-star" style="color:#ddd;"></i>';
+                        }
+
+                        const reviewHtml = `
+                            <div class="review-item" style="transition-delay: ${index * 100}ms">
+                                <div class="review-header">
+                                    <div class="reviewer-info">
+                                        <h4>${escapeHtml(review.name)}</h4>
+                                        <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(review.country)}</span>
+                                    </div>
+                                    <div class="review-date">${date}</div>
+                                </div>
+                                <div class="display-stars">${starsHtml}</div>
+                                <p class="review-text">${escapeHtml(review.review)}</p>
+                            </div>
+                        `;
+                        listContainer.innerHTML += reviewHtml;
+                    });
+                    
+                    // Trigger visibility after append to animate them in
+                    setTimeout(() => {
+                        const items = document.querySelectorAll('.review-item');
+                        items.forEach(item => item.classList.add('visible'));
+                    }, 100);
+
+                } else {
+                    listContainer.innerHTML = '<div style="text-align:center; color:#999;">No reviews yet. Be the first!</div>';
+                }
+
+            } catch (error) {
+                console.error("Error fetching reviews:", error);
+                loading.textContent = "Failed to load reviews. Check console.";
+                loading.classList.add('error-msg');
+            }
+        }
+
+        // --- 5. SUBMIT REVIEW (WRITE) ---
+        document.getElementById('reviewForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.spinner');
+            
+            // Get Values
+            const name = document.getElementById('name').value;
+            const country = document.getElementById('country').value;
+            const reviewText = document.getElementById('review').value;
+            
+            // Get selected rating
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            const rating = ratingInput ? ratingInput.value : 0;
+
+            // Construct Object EXACTLY as Rule requires
+            const newReview = {
+                name: name,
+                country: country,
+                rating: rating,
+                review: reviewText,
+                timestamp: Date.now() 
+            };
+
+            // Disable button & Show Spinner
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            spinner.style.display = 'inline-block';
+
+            try {
+                const response = await fetch(DATABASE_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newReview)
+                });
+
+                if (response.ok) {
+                    alert("Review submitted successfully!");
+                    document.getElementById('reviewForm').reset();
+                    fetchReviews(); 
+                } else {
+                    // Helpful error for debugging
+                    const errorText = await response.text();
+                    console.error("Firebase Error:", errorText);
+                    alert("Error submitting review. Check your Firebase Rules. (See Console)");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Something went wrong. Check console for details.");
+            } finally {
+                // Reset Button
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+        });
+
+        // --- 6. UTILITIES ---
+        function escapeHtml(text) {
+            if (!text) return text;
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // --- 7. INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchReviews();
+            
+            // Folder trick for clean URL
+            try {
+                if (window.location.pathname.endsWith('index.html')) {
+                     const newPath = window.location.pathname.replace('index.html', '');
+                     window.history.replaceState(null, null, newPath);
+                }
+            } catch (error) {}
+        });
+    </script>
+</body>
+</html>
