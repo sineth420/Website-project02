@@ -96,28 +96,6 @@
         
         .logo i { font-size: 2.5rem; color: var(--gold-accent); }
 
-        .back-btn { 
-            color: var(--white); 
-            font-size: 0.95rem; font-weight: 600; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            padding: 12px 30px; 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            border-radius: 50px; 
-            transition: all 0.3s; 
-            background: transparent;
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .back-btn:hover { 
-            background-color: var(--gold-accent); 
-            border-color: var(--gold-accent); 
-            color: var(--deep-forest); 
-            transform: translateY(-2px);
-        }
-
         /* --- Layout Utilities --- */
         .container { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
         .section-padding { padding: 100px 0; }
@@ -229,7 +207,7 @@
         .booking-wrapper { 
             background: #fff; 
             width: 100%; 
-            max-width: 750px; 
+            max-width: 750px; /* Slightly wider */
             margin: 0 auto; 
             padding: 60px; /* More padding */
             border-radius: 20px; 
@@ -250,7 +228,7 @@
         
         input, select, textarea { 
             width: 100%; 
-            padding: 18px; 
+            padding: 18px; /* Taller inputs */
             border: 1px solid #e0e0e0; 
             border-radius: 10px; /* More rounded */
             font-family: inherit; 
@@ -263,7 +241,7 @@
             outline: none; 
             border-color: var(--gold-accent); 
             background-color: #fff; 
-            box-shadow: 0 0 0 0 4px rgba(212, 175, 55, 0.1); 
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
         }
 
         .selected-package-badge { 
@@ -293,7 +271,7 @@
         .submit-btn:hover { background-color: var(--emerald); color: white; }
         .submit-btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        .spinner { width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-in-out infinite; display: none; }
+        .spinner { width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s ease-inout infinite; display: none; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* --- Toast --- */
@@ -308,34 +286,13 @@
         /* Footer */
         footer {
             background-color: var(--deep-forest); color: rgba(255,255,255,0.8);
-            padding: 60px 0 20px; text-align: left; 
+            padding: 20px 0; /* Reduced padding to make footer smaller */
+            text-align: center; font-size: 0.8rem; /* Reduced font size */
         }
-        
-        .footer-grid {
-            display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; max-width: 1300px; margin: 0 auto; padding: 0 5%;
-        }
-
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; font-weight: 700; display: block; margin-bottom: 15px; }
-        .footer-desc { font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; color: rgba(255,255,255,0.7); }
-        
-        .social-icons { display: flex; gap: 15px; }
-        .social-icons a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: #fff; transition: 0.3s; }
-        .social-icons a:hover { background: var(--gold-accent); color: var(--deep-forest); border-color: var(--gold-accent); }
-
-        .footer-title { color: #fff; font-size: 1.1rem; margin-bottom: 20px; font-family: 'Playfair Display', serif; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: rgba(255,255,255,0.7); font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
-        .footer-links a:hover { color: var(--gold-accent); padding-left: 5px; }
-
-        .footer-center-col { }
-        
-        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
 
         /* Responsive */
         @media (max-width: 1024px) {
             .packages-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) { 
@@ -343,7 +300,6 @@
             header { padding: 15px 0; position: sticky; top:0; } /* Sticky on mobile for space */
             body { padding-top: 0; }
             .logo { font-size: 1.5rem; }
-            .back-btn span { display: none; } 
 
             .form-row { grid-template-columns: 1fr; gap: 0; } 
             .booking-wrapper { padding: 40px 25px; } 
@@ -354,26 +310,17 @@
             .packages-grid { grid-template-columns: 1fr; }
             .card-img { height: 250px; }
             .card-content { padding: 30px; }
-            
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .social-icons { justify-content: center; }
-            .footer-links a { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header id="main-header">
         <div class="header-content">
-            <!-- UPDATED: ../index.html (Go up one level) -->
             <a href="../index.html" class="logo">
                 <i class="fas fa-paw"></i> Onel Safari & Resort
             </a>
-            <!-- UPDATED: ../index.html (Go up one level) -->
-            <a href="../index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
-            </a>
+            <!-- REMOVED: Back to Home Button -->
         </div>
     </header>
 
@@ -384,11 +331,11 @@
                 <p>Select an adventure package below to begin your journey into the wild.</p>
             </div>
             <div class="packages-grid">
-                <!-- Package 1 -->
+                <!-- Package 1: 4 Hours -->
                 <div class="package-card reveal-left">
                     <div class="card-img">
                         <span class="pkg-badge">Popular</span>
-                        <!-- RESTORED: Original Image Path -->
+                        <!-- UPDATED PATH: Uses standard home page image name -->
                         <img src="../images/pkg-1.webp" alt="4 Hours Package">
                     </div>
                     <div class="card-content">
@@ -405,10 +352,10 @@
                     </div>
                 </div>
 
-                <!-- Package 2 -->
+                <!-- Package 2: 6 Hours -->
                 <div class="package-card reveal-zoom">
                     <div class="card-img">
-                        <!-- RESTORED: Original Image Path -->
+                        <!-- UPDATED PATH: Uses standard home page image name -->
                         <img src="../images/pkg-2.webp" alt="6 Hours Package">
                     </div>
                     <div class="card-content">
@@ -432,7 +379,7 @@
                 <div class="package-card reveal-right">
                     <div class="card-img">
                         <span class="pkg-badge">Best Value</span>
-                        <!-- RESTORED: Original Image Path -->
+                        <!-- UPDATED PATH: Uses standard home page image name -->
                         <img src="../images/pkg-3.webp" alt="Full Day Package">
                     </div>
                     <div class="card-content">
@@ -498,56 +445,8 @@
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div>
-                <!-- UPDATED: ../index.html -->
-                <a href="../index.html" class="footer-logo scroll-top-trigger">Onel Safari & Resort</a>
-                <p class="footer-desc">
-                    Dedicated to providing unforgettable Udawalawe Safari experiences. We combine luxury accommodation with expert-guided tours to create memories that last a lifetime.
-                </p>
-                <div class="social-icons">
-                    <a href="https://wa.me/94767301512" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/share/1AcCHoHruN/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            
-            <div>
-                <h4 class="footer-title">Quick Links</h4>
-                <ul class="footer-links">
-                    <!-- UPDATED: ../index.html#about (Assuming these sections are on home page) -->
-                    <li><a href="../index.html#about">About Us</a></li>
-                    <!-- UPDATED: ../index.html#packages -->
-                    <li><a href="../index.html#packages">Safari Packages</a></li>
-                    <li><a href="./index.html">Booking</a></li>
-                    <li><a href="./review/index.html">Guest Reviews</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-center-col">
-                <h4 class="footer-title">Contact Info</h4>
-                <ul class="footer-links">
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i> 
-                        <span>No. 458/3 mahaara udawalawa</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-phone"></i> 
-                        <a href="tel:0767301512">076 730 1512</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-envelope"></i> 
-                        <a href="mailto:info@onelsafari.com">info@onelsafari.com</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2026 Onel Safari & Resort. All Rights Reserved.
-        </div>
+        &copy; 2026 Onel Safari & Resort. All Rights Reserved.
     </footer>
-
     <div id="notification-container"></div>
 
     <script>
@@ -567,7 +466,6 @@
 
             applyCleanUrl();
 
-            // FIXED SYNTAX ERROR: Added '=>'
             window.addEventListener('popstate', (event) => {
                 applyCleanUrl();
             });
@@ -615,8 +513,8 @@
 
             if (selectedPackage) {
                 // Try to find a matching option value
+                // Simple check: if the URL value is contained in an option value
                 const options = Array.from(packageSelect.options);
-                // FIXED SYNTAX ERROR: 'matching option' -> 'matchingOption'
                 const matchingOption = options.find(opt => opt.value.includes(selectedPackage));
                 
                 if (matchingOption) {
@@ -638,7 +536,7 @@
             // --- 4. Scroll Animations ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if(entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
@@ -693,10 +591,9 @@
                     }
                 })
                 .catch(error => {
-                    console.error("Error:", error);
                     showToast('error', 'Connection Error', 'Please check your internet connection.');
                 })
-                .finally(() => { // FIXED SYNTAX: Removed space
+                .finally(() => {
                     btnText.style.display = 'inline';
                     spinner.style.display = 'none';
                     submitBtn.disabled = false;
