@@ -19,6 +19,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Safari - Onel Safari & Resort</title>
     
+    <!-- CSP FIX: Allow scripts and form submission -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://formspree.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io;">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -557,7 +560,28 @@
                 const container = document.getElementById('notification-container');
                 const toast = document.createElement('div');
                 toast.className = `toast ${type}`;
-                toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i><div class="toast-content"><div class="toast-title">${title}</div><div class="toast-msg">${message}</div></div>`;
+                
+                // Securely create content
+                const icon = document.createElement('i');
+                icon.className = `fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`;
+                
+                const content = document.createElement('div');
+                content.className = 'toast-content';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'toast-title';
+                titleDiv.textContent = title;
+                
+                const msgDiv = document.createElement('div');
+                msgDiv.className = 'toast-msg';
+                msgDiv.textContent = message;
+                
+                content.appendChild(titleDiv);
+                content.appendChild(msgDiv);
+                
+                toast.appendChild(icon);
+                toast.appendChild(content);
+                
                 container.appendChild(toast);
                 requestAnimationFrame(() => toast.classList.add('show'));
                 setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 5000);

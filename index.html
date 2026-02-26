@@ -12,6 +12,9 @@
     <meta property="og:title" content="ONEL SAFARI & RESORT">
     <meta property="og:description" content="Luxury wildlife experiences in the heart of Udawalawa.">
     
+    <!-- CSP FIX: Allow scripts to run -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://wa.me;">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -451,9 +454,26 @@
             .logo-img { height: 60px; }
 
             #hero { padding: 150px 20px 100px; background-attachment: scroll; }
-            .hero-content { padding-left: 0; max-width: 100%; text-align: center; }
+            
+            /* --- MOBILE HERO FIX --- */
+            .hero-content {
+                padding-left: 0; /* Remove left padding */
+                max-width: 100%; 
+                text-align: center; /* Center text */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .hero-title { font-size: 2.8rem; }
             .hero-title span { font-size: 2rem; }
+
+            /* Force Button to Center */
+            .hero-btn-wrapper {
+                justify-content: center !important; 
+                width: 100%;
+            }
+            /* --------------------- */
 
             .pkg-grid, 
             .wildlife-grid,
@@ -507,7 +527,8 @@
             <p class="hero-desc">
                 Step into a world where luxury meets the wild. Experience Udawalawa's majestic giants and untamed beauty with curated excellence.
             </p>
-            <div style="display: flex; gap: 15px; justify-content: flex-start;">
+            <!-- Added class 'hero-btn-wrapper' here for mobile CSS targeting -->
+            <div class="hero-btn-wrapper" style="display: flex; gap: 15px; justify-content: flex-start;">
                 <a href="booking/index.html" class="btn btn-outline">Book Now</a>
             </div>
         </div>
@@ -697,7 +718,7 @@
                 <div>
                     <a href="#" class="footer-logo scroll-top-trigger">Onel Safari & Resort</a>
                     <p class="footer-desc">
-                        Dedicated to providing unforgettable Udawalawa Safari experiences. We combine luxury accommodation with expert-guided tours to create memories that last a lifetime.
+                        Dedicated to providing unforgettable Udawalawe Safari experiences. We combine luxury accommodation with expert-guided tours to create memories that last a lifetime.
                     </p>
                     <div class="social-icons">
                         <a href="https://wa.me/94767301512" target="_blank"><i class="fab fa-whatsapp"></i></a>

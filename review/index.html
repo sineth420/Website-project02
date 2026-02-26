@@ -6,6 +6,9 @@
     
     <title>Guest Reviews - Onel Safari & Resort</title>
     
+    <!-- CSP FIX: Allow scripts to run on this page -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://comment-onel-safari-default-rtdb.asia-southeast1.firebasedatabase.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +59,7 @@
 
         .header-content { 
             max-width: 1300px; margin: 0 auto; padding: 0 5%; 
-            display: flex; justify-content: flex-start; align-items: center; /* Changed to flex-start since button is gone */
+            display: flex; justify-content: flex-start; align-items: center;
         }
 
         .logo { 
@@ -93,7 +96,7 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .form-group { margin-bottom: 25px; transition: transform 0.3s ease; }
+        .form-group { margin-bottom: 25px; }
         
         label { 
             display: block; 
@@ -122,7 +125,7 @@
             box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
         }
 
-        /* --- FIXED Star Rating System --- */
+        /* --- Star Rating System --- */
         .star-rating {
             display: flex;
             flex-direction: row-reverse; 
@@ -136,20 +139,19 @@
             font-size: 2.2rem;
             color: #ddd;
             cursor: pointer;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s;
             margin: 0;
         }
 
         .star-rating label:hover { transform: scale(1.2); }
 
-        /* Highlight current star and all previous (visually next in DOM) stars on hover */
         .star-rating input:checked ~ label,
         .star-rating label:hover,
         .star-rating label:hover ~ label {
             color: var(--gold-accent);
         }
 
-        /* --- MODERN Submit Button --- */
+        /* --- Modern Submit Button --- */
         .submit-btn {
             width: 100%;
             padding: 18px;
@@ -179,10 +181,6 @@
             box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
         }
         
-        .submit-btn:active {
-            transform: translateY(-1px);
-        }
-
         .submit-btn:disabled {
             background: #ccc;
             color: #888;
@@ -294,30 +292,11 @@
         }
 
         /* --- ANIMATION CLASSES --- */
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal-zoom {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease-out;
-        }
-        .reveal-down {
-            opacity: 0;
-            transform: translateY(-30px);
-            transition: all 0.8s ease-out;
-        }
-        .active {
-            opacity: 1;
-            transform: translate(0, 0) scale(1);
-        }
+        .reveal-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal-left { opacity: 0; transform: translateX(-30px); transition: all 0.8s ease-out; }
+        .reveal-zoom { opacity: 0; transform: scale(0.9); transition: all 0.8s ease-out; }
+        .reveal-down { opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-out; }
+        .active { opacity: 1; transform: translate(0, 0) scale(1); }
 
         /* --- Responsive --- */
         @media (max-width: 768px) {
@@ -329,7 +308,6 @@
             .page-header h1 { font-size: 2rem; }
             .review-card { padding: 30px 20px; }
             .review-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            
             .star-rating label { font-size: 1.8rem; }
         }
     </style>
@@ -339,11 +317,9 @@
     <!-- Header -->
     <header id="main-header" class="reveal-down">
         <div class="header-content">
-            <!-- Corrected Link to go up one level to index.html -->
             <a href="../index.html" class="logo">
                 <i class="fas fa-paw"></i> Onel Safari & Resort
             </a>
-            <!-- REMOVED: Back to Home Button -->
         </div>
     </header>
 
@@ -367,7 +343,6 @@
                     <label for="country">Your Country</label>
                     <select id="country" name="country" required>
                         <option value="" disabled selected>Select your country...</option>
-                        <!-- Options will be populated by JS -->
                     </select>
                 </div>
 
@@ -440,7 +415,6 @@
             "Zambia", "Zimbabwe"
         ];
 
-        // Populate Country Dropdown
         const countrySelect = document.getElementById('country');
         const lankaOption = document.createElement('option');
         lankaOption.value = "Sri Lanka";
@@ -456,27 +430,16 @@
             }
         });
 
-        // --- 3. SCROLL ANIMATIONS (OBSERVER) ---
+        // --- 3. SCROLL ANIMATIONS ---
         const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-zoom, .reveal-down');
-
-        const revealObserver = new IntersectionObserver((entries, observer) => {
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, {
-            root: null,
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px"
-        });
+        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+        revealElements.forEach(el => revealObserver.observe(el));
 
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-
-
-        // --- 4. FETCH REVIEWS (READ) ---
+        // --- 4. FETCH REVIEWS (SECURE METHOD) ---
         async function fetchReviews() {
             const listContainer = document.getElementById('reviewsList');
             const loading = document.getElementById('loading');
@@ -487,10 +450,13 @@
                 
                 const data = await response.json();
                 loading.style.display = 'none';
-                listContainer.innerHTML = ''; 
+                
+                // Clear existing content safely
+                while (listContainer.firstChild) {
+                    listContainer.removeChild(listContainer.firstChild);
+                }
 
                 if (data) {
-                    // Convert object to array and reverse
                     const reviewsArray = Object.entries(data).reverse();
 
                     reviewsArray.forEach(([key, review], index) => {
@@ -498,34 +464,56 @@
                             year: 'numeric', month: 'long', day: 'numeric'
                         });
 
-                        let starsHtml = '';
-                        for(let i=1; i<=5; i++) {
-                            if(i <= review.rating) starsHtml += '<i class="fas fa-star"></i>';
-                            else starsHtml += '<i class="far fa-star" style="color:#ddd;"></i>';
-                        }
+                        // Create elements safely instead of innerHTML += 
+                        const reviewDiv = document.createElement('div');
+                        reviewDiv.className = 'review-item';
+                        reviewDiv.style.transitionDelay = `${index * 100}ms`;
 
-                        const reviewHtml = `
-                            <div class="review-item" style="transition-delay: ${index * 100}ms">
-                                <div class="review-header">
-                                    <div class="reviewer-info">
-                                        <h4>${escapeHtml(review.name)}</h4>
-                                        <span><i class="fas fa-map-marker-alt"></i> ${escapeHtml(review.country)}</span>
-                                    </div>
-                                    <div class="review-date">${date}</div>
-                                </div>
-                                <div class="display-stars">${starsHtml}</div>
-                                <p class="review-text">${escapeHtml(review.review)}</p>
-                            </div>
-                        `;
-                        listContainer.innerHTML += reviewHtml;
+                        const reviewHeader = document.createElement('div');
+                        reviewHeader.className = 'review-header';
+
+                        const reviewerInfo = document.createElement('div');
+                        reviewerInfo.className = 'reviewer-info';
+                        
+                        const nameHeading = document.createElement('h4');
+                        nameHeading.textContent = review.name;
+                        
+                        const countrySpan = document.createElement('span');
+                        countrySpan.innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + escapeHtml(review.country);
+                        
+                        reviewerInfo.appendChild(nameHeading);
+                        reviewerInfo.appendChild(countrySpan);
+
+                        const dateDiv = document.createElement('div');
+                        dateDiv.className = 'review-date';
+                        dateDiv.textContent = date;
+
+                        reviewHeader.appendChild(reviewerInfo);
+                        reviewHeader.appendChild(dateDiv);
+                        reviewDiv.appendChild(reviewHeader);
+
+                        const starsDiv = document.createElement('div');
+                        starsDiv.className = 'display-stars';
+                        for(let i=1; i<=5; i++) {
+                            if(i <= review.rating) {
+                                starsDiv.innerHTML += '<i class="fas fa-star"></i>';
+                            } else {
+                                starsDiv.innerHTML += '<i class="far fa-star" style="color:#ddd;"></i>';
+                            }
+                        }
+                        reviewDiv.appendChild(starsDiv);
+
+                        const textP = document.createElement('p');
+                        textP.className = 'review-text';
+                        textP.textContent = review.review;
+                        reviewDiv.appendChild(textP);
+
+                        listContainer.appendChild(reviewDiv);
                     });
                     
-                    // Trigger visibility after append to animate them in
                     setTimeout(() => {
-                        const items = document.querySelectorAll('.review-item');
-                        items.forEach(item => item.classList.add('visible'));
+                        document.querySelectorAll('.review-item').forEach(item => item.classList.add('visible'));
                     }, 100);
-
                 } else {
                     listContainer.innerHTML = '<div style="text-align:center; color:#999;">No reviews yet. Be the first!</div>';
                 }
@@ -537,23 +525,19 @@
             }
         }
 
-        // --- 5. SUBMIT REVIEW (WRITE) ---
+        // --- 5. SUBMIT REVIEW ---
         document.getElementById('reviewForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const submitBtn = document.getElementById('submitBtn');
             const btnText = submitBtn.querySelector('.btn-text');
             const spinner = submitBtn.querySelector('.spinner');
             
-            // Get Values
             const name = document.getElementById('name').value;
             const country = document.getElementById('country').value;
             const reviewText = document.getElementById('review').value;
-            
-            // Get selected rating
             const ratingInput = document.querySelector('input[name="rating"]:checked');
             const rating = ratingInput ? ratingInput.value : 0;
 
-            // Construct Object EXACTLY as Rule requires
             const newReview = {
                 name: name,
                 country: country,
@@ -562,7 +546,6 @@
                 timestamp: Date.now() 
             };
 
-            // Disable button & Show Spinner
             submitBtn.disabled = true;
             btnText.style.display = 'none';
             spinner.style.display = 'inline-block';
@@ -570,9 +553,7 @@
             try {
                 const response = await fetch(DATABASE_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newReview)
                 });
 
@@ -583,13 +564,12 @@
                 } else {
                     const errorText = await response.text();
                     console.error("Firebase Error:", errorText);
-                    alert("Error submitting review. Check your Firebase Rules. (See Console)");
+                    alert("Error submitting review. Check console.");
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Something went wrong. Check console for details.");
+                alert("Something went wrong.");
             } finally {
-                // Reset Button
                 submitBtn.disabled = false;
                 btnText.style.display = 'inline';
                 spinner.style.display = 'none';
@@ -610,8 +590,6 @@
         // --- 7. INITIALIZATION ---
         window.addEventListener('DOMContentLoaded', () => {
             fetchReviews();
-            
-            // Folder trick for clean URL
             try {
                 if (window.location.pathname.endsWith('index.html')) {
                      const newPath = window.location.pathname.replace('index.html', '');
