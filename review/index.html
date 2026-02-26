@@ -25,7 +25,7 @@
             --white: #ffffff;
             --text-main: #1A1A1A;
             --text-light: #555555;
-            --glass-bg: rgba(27, 67, 50, 0.90); /* Darker glass for header */
+            --glass-bg: rgba(27, 67, 50, 0.90); 
             --card-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
 
@@ -44,7 +44,7 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--deep-forest); font-weight: 600; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- Header (FROM YOUR INPUT) --- */
+        /* --- Header --- */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 1000;
             padding: 25px 0;
@@ -56,7 +56,7 @@
 
         .header-content { 
             max-width: 1300px; margin: 0 auto; padding: 0 5%; 
-            display: flex; justify-content: space-between; align-items: center; 
+            display: flex; justify-content: flex-start; align-items: center; /* Changed to flex-start since button is gone */
         }
 
         .logo { 
@@ -65,18 +65,6 @@
             align-items: center; gap: 15px; text-decoration: none; line-height: 1.1;
         }
         .logo i { font-size: 2.5rem; color: var(--gold-accent); }
-
-        .back-btn { 
-            color: var(--white); font-size: 0.95rem; font-weight: 600; 
-            display: flex; align-items: center; gap: 10px; 
-            padding: 12px 30px; border: 1px solid rgba(255, 255, 255, 0.4); 
-            border-radius: 50px; transition: all 0.3s; background: transparent;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        .back-btn:hover { 
-            background-color: var(--gold-accent); border-color: var(--gold-accent); 
-            color: var(--deep-forest); transform: translateY(-2px); 
-        }
 
         /* --- Layout Utilities --- */
         .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
@@ -105,9 +93,8 @@
             border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .form-group { margin-bottom: 20px; transition: transform 0.3s ease; }
-        .form-group:hover { transform: translateX(5px); } 
-
+        .form-group { margin-bottom: 25px; transition: transform 0.3s ease; }
+        
         label { 
             display: block; 
             margin-bottom: 8px; 
@@ -118,7 +105,7 @@
 
         input[type="text"], select, textarea { 
             width: 100%; 
-            padding: 14px; 
+            padding: 16px; 
             border: 1px solid #e0e0e0; 
             border-radius: 10px; 
             font-family: inherit; 
@@ -132,22 +119,21 @@
             outline: none; 
             border-color: var(--gold-accent); 
             background-color: #fff;
-            transform: scale(1.01); 
             box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1); 
         }
 
-        /* --- Star Rating System --- */
+        /* --- FIXED Star Rating System --- */
         .star-rating {
             display: flex;
             flex-direction: row-reverse; 
             justify-content: flex-end;
-            gap: 10px;
+            gap: 5px;
         }
 
         .star-rating input { display: none; }
 
         .star-rating label {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #ddd;
             cursor: pointer;
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -156,14 +142,18 @@
 
         .star-rating label:hover { transform: scale(1.2); }
 
+        /* Highlight current star and all previous (visually next in DOM) stars on hover */
         .star-rating input:checked ~ label,
-        .style="background-color: var(--gold-accent);
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: var(--gold-accent);
+        }
 
-        /* --- Submit Button --- */
+        /* --- MODERN Submit Button --- */
         .submit-btn {
             width: 100%;
-            padding: 16px;
-            background-color: var(--deep-forest);
+            padding: 18px;
+            background: linear-gradient(135deg, var(--deep-forest) 0%, var(--emerald) 100%);
             color: white;
             border: none;
             border-radius: 50px;
@@ -172,20 +162,30 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(27, 67, 50, 0.15);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(27, 67, 50, 0.2);
             position: relative;
             overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .submit-btn:hover {
-            background-color: var(--gold-accent);
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #F4D03F 100%);
             color: var(--deep-forest);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
         }
         
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
         .submit-btn:disabled {
-            background-color: #ccc;
+            background: #ccc;
+            color: #888;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -199,8 +199,6 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-            vertical-align: middle;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
@@ -327,27 +325,25 @@
             body { padding-top: 0; }
             .logo { font-size: 1.5rem; }
             .logo i { font-size: 1.8rem; }
-            .back-btn span { display: none; } 
             
             .page-header h1 { font-size: 2rem; }
             .review-card { padding: 30px 20px; }
             .review-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            
+            .star-rating label { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header (UPDATED WITH YOUR CSS) -->
+    <!-- Header -->
     <header id="main-header" class="reveal-down">
         <div class="header-content">
-            <!-- UPDATED LINK: /index.html -->
-            <a href="/index.html" class="logo">
+            <!-- Corrected Link to go up one level to index.html -->
+            <a href="../index.html" class="logo">
                 <i class="fas fa-paw"></i> Onel Safari & Resort
             </a>
-            <!-- UPDATED LINK: /index.html -->
-            <a href="/index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> <span>Back to Home</span>
-            </a>
+            <!-- REMOVED: Back to Home Button -->
         </div>
     </header>
 
@@ -412,7 +408,6 @@
 
     <script>
         // --- 1. CONFIGURATION ---
-        // Ensure this points to /comments.json
         const DATABASE_URL = "https://comment-onel-safari-default-rtdb.asia-southeast1.firebasedatabase.app/comments.json";
 
         // --- 2. COUNTRY LIST ---
@@ -586,7 +581,6 @@
                     document.getElementById('reviewForm').reset();
                     fetchReviews(); 
                 } else {
-                    // Helpful error for debugging
                     const errorText = await response.text();
                     console.error("Firebase Error:", errorText);
                     alert("Error submitting review. Check your Firebase Rules. (See Console)");
